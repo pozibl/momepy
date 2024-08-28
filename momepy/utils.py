@@ -385,7 +385,7 @@ def gdf_to_nx(
 
     net.graph["crs"] = gdf_edges.crs
     gdf_edges[length] = gdf_edges.geometry.length
-    gdf_nodes[length] = gdf_nodes.geometry.length
+
     fields = {
         "edges": list(gdf_edges.columns),
         "nodes": list(gdf_nodes.columns),
