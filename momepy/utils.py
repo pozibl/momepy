@@ -173,7 +173,6 @@ def _generate_primal(
                 attributes["index_position"] = i
                 if custom_index:
                     attributes["index"] = row.Index
-
             graph.add_node(geom, **attributes)
 
     if add_edges_first:
@@ -187,7 +186,6 @@ def _generate_primal(
     node_attrs = {node: {"x": node[0], "y": node[1]} for node, data in graph.nodes(data=True) if not data}
     nx.set_node_attributes(graph, node_attrs)
 
-    
 
 def _generate_dual(
     graph, gdf_network, fields, angles, multigraph, angle, preserve_index

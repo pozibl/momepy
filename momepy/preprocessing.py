@@ -215,12 +215,17 @@ def remove_false_nodes(gdf):
     if len(merge_res):
         g = nx.Graph(list(zip(merge_inp * -1, merge_res, strict=True)))
         new_geoms = []
+
         for c in nx.connected_components(g):
             valid = [ix for ix in c if ix > -1]
+
+            # note the union_all function will segments lines in geom[valid] about
+            # any intersection points
             new_geoms.append(shapely.line_merge(shapely.union_all(geom[valid])))
 
         df = df.drop(merge_res)
         final = gpd.GeoSeries(new_geoms, crs=df.crs).explode(ignore_index=True)
+
         if isinstance(gdf, gpd.GeoDataFrame):
             combined = pd.concat(
                 [
